@@ -5,10 +5,13 @@ from struct import *
 # struct doc: http://docs.activestate.com/activepython/3.0/python/library/struct.html
 # ethernet:  http://networksorcery.com/enp/protocol/ethernet.htm
 
-class ethernet_frame(object):
+class Ethernet_frame:
   """Ethernet 802.3 Packet format"""
   from socket import ntohs
   from struct import unpack
+
+  def readable_mac(self, mac):
+    return "%.2x:%.2x:%.2x:%.2x:%.2x:%.2x" %(ord(mac[0]), ord(mac[1]), ord(mac[2]), ord(mac[3]), ord(mac[4]), ord(mac[5]))
 
   def __init__(self, raw):
     self.raw = raw
@@ -23,12 +26,17 @@ class ethernet_frame(object):
     }
 
     self.header = unpack('!6s6sH', raw[:14])
-    self.dst_mac = header[0] # 6 bytes
-    self.src_mac = header[1]
-    self.e_type  = ntohs(eth[2]) # 2 bytes 
+    self.dst_mac = self.header[0] # 6 bytes
+    self.src_mac = self.header[1]
+    self.e_type  = self.header[2] # 2 bytes 
 
-  def eth_addr(self, mac):
-    return "%.2x:%.2x:%.2x:%.2x:%.2x:%.2x" %(ord(mac[0]), ord(mac[1]), ord(mac[2]), ord(mac[3]), ord(mac[4]), ord(mac[5]))
+  def __str__(self):
+    s = ""
+    s += "DESTINATION MAC %s\n" % self.readable_mac(self.dst_mac)
+    s += "SOURCE MAC %s\n" % self.readable_mac(self.src_mac)
+    s += "IP TYPE %s\n" % ("0x%.4x" % self.e_type)
+    return s
+
     
 
 
@@ -53,6 +61,11 @@ while 1:
   packet = ether_frame[0]
   print("PACKET LENGTH: %d" % len(packet))
   #print(ether_frame)
+
+  frm = Ethernet_frame(packet)
+  print(str(frm))
+
+  continue
 
   eth_length = 14  # 6 + 6 + 2 : dest-mac, src-mac, type
 
