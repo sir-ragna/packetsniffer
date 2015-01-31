@@ -1,0 +1,384 @@
+AF_APPLETALK : AddressFamily.AF_APPLETALK
+AF_ASH : AddressFamily.AF_ASH
+AF_ATMPVC : AddressFamily.AF_ATMPVC
+AF_ATMSVC : AddressFamily.AF_ATMSVC
+AF_AX25 : AddressFamily.AF_AX25
+AF_BLUETOOTH : AddressFamily.AF_BLUETOOTH
+AF_BRIDGE : AddressFamily.AF_BRIDGE
+AF_CAN : AddressFamily.AF_CAN
+AF_DECnet : 12
+AF_ECONET : AddressFamily.AF_ECONET
+AF_INET : AddressFamily.AF_INET
+AF_INET6 : AddressFamily.AF_INET6
+AF_IPX : AddressFamily.AF_IPX
+AF_IRDA : AddressFamily.AF_IRDA
+AF_KEY : AddressFamily.AF_KEY
+AF_LLC : AddressFamily.AF_LLC
+AF_NETBEUI : AddressFamily.AF_NETBEUI
+AF_NETLINK : AddressFamily.AF_ROUTE
+AF_NETROM : AddressFamily.AF_NETROM
+AF_PACKET : AddressFamily.AF_PACKET
+AF_PPPOX : AddressFamily.AF_PPPOX
+AF_RDS : AddressFamily.AF_RDS
+AF_ROSE : AddressFamily.AF_ROSE
+AF_ROUTE : AddressFamily.AF_ROUTE
+AF_SECURITY : AddressFamily.AF_SECURITY
+AF_SNA : AddressFamily.AF_SNA
+AF_TIPC : AddressFamily.AF_TIPC
+AF_UNIX : AddressFamily.AF_UNIX
+AF_UNSPEC : AddressFamily.AF_UNSPEC
+AF_WANPIPE : AddressFamily.AF_WANPIPE
+AF_X25 : AddressFamily.AF_X25
+AI_ADDRCONFIG : 32
+AI_ALL : 16
+AI_CANONNAME : 2
+AI_NUMERICHOST : 4
+AI_NUMERICSERV : 1024
+AI_PASSIVE : 1
+AI_V4MAPPED : 8
+AddressFamily : <enum 'AddressFamily'>
+BDADDR_ANY : 00:00:00:00:00:00
+BDADDR_LOCAL : 00:00:00:FF:FF:FF
+BTPROTO_HCI : 1
+BTPROTO_L2CAP : 0
+BTPROTO_RFCOMM : 3
+BTPROTO_SCO : 2
+CAN_BCM : 2
+CAN_BCM_RX_CHANGED : 12
+CAN_BCM_RX_DELETE : 6
+CAN_BCM_RX_READ : 7
+CAN_BCM_RX_SETUP : 5
+CAN_BCM_RX_STATUS : 10
+CAN_BCM_RX_TIMEOUT : 11
+CAN_BCM_TX_DELETE : 2
+CAN_BCM_TX_EXPIRED : 9
+CAN_BCM_TX_READ : 3
+CAN_BCM_TX_SEND : 4
+CAN_BCM_TX_SETUP : 1
+CAN_BCM_TX_STATUS : 8
+CAN_EFF_FLAG : 2147483648
+CAN_EFF_MASK : 536870911
+CAN_ERR_FLAG : 536870912
+CAN_ERR_MASK : 536870911
+CAN_RAW : 1
+CAN_RAW_ERR_FILTER : 2
+CAN_RAW_FILTER : 1
+CAN_RAW_LOOPBACK : 3
+CAN_RAW_RECV_OWN_MSGS : 4
+CAN_RTR_FLAG : 1073741824
+CAN_SFF_MASK : 2047
+CAPI : <capsule object "_socket.CAPI" at 0x7ff59afe0840>
+CMSG_LEN : <built-in function CMSG_LEN>
+CMSG_SPACE : <built-in function CMSG_SPACE>
+EAGAIN : 11
+EAI_ADDRFAMILY : -9
+EAI_AGAIN : -3
+EAI_BADFLAGS : -1
+EAI_FAIL : -4
+EAI_FAMILY : -6
+EAI_MEMORY : -10
+EAI_NODATA : -5
+EAI_NONAME : -2
+EAI_OVERFLOW : -12
+EAI_SERVICE : -8
+EAI_SOCKTYPE : -7
+EAI_SYSTEM : -11
+EBADF : 9
+EWOULDBLOCK : 11
+HCI_DATA_DIR : 1
+HCI_FILTER : 2
+HCI_TIME_STAMP : 3
+INADDR_ALLHOSTS_GROUP : 3758096385
+INADDR_ANY : 0
+INADDR_BROADCAST : 4294967295
+INADDR_LOOPBACK : 2130706433
+INADDR_MAX_LOCAL_GROUP : 3758096639
+INADDR_NONE : 4294967295
+INADDR_UNSPEC_GROUP : 3758096384
+IPPORT_RESERVED : 1024
+IPPORT_USERRESERVED : 5000
+IPPROTO_AH : 51
+IPPROTO_DSTOPTS : 60
+IPPROTO_EGP : 8
+IPPROTO_ESP : 50
+IPPROTO_FRAGMENT : 44
+IPPROTO_GRE : 47
+IPPROTO_HOPOPTS : 0
+IPPROTO_ICMP : 1
+IPPROTO_ICMPV6 : 58
+IPPROTO_IDP : 22
+IPPROTO_IGMP : 2
+IPPROTO_IP : 0
+IPPROTO_IPIP : 4
+IPPROTO_IPV6 : 41
+IPPROTO_NONE : 59
+IPPROTO_PIM : 103
+IPPROTO_PUP : 12
+IPPROTO_RAW : 255
+IPPROTO_ROUTING : 43
+IPPROTO_RSVP : 46
+IPPROTO_SCTP : 132
+IPPROTO_TCP : 6
+IPPROTO_TP : 29
+IPPROTO_UDP : 17
+IPV6_CHECKSUM : 7
+IPV6_DSTOPTS : 59
+IPV6_HOPLIMIT : 52
+IPV6_HOPOPTS : 54
+IPV6_JOIN_GROUP : 20
+IPV6_LEAVE_GROUP : 21
+IPV6_MULTICAST_HOPS : 18
+IPV6_MULTICAST_IF : 17
+IPV6_MULTICAST_LOOP : 19
+IPV6_NEXTHOP : 9
+IPV6_PKTINFO : 50
+IPV6_RECVDSTOPTS : 58
+IPV6_RECVHOPLIMIT : 51
+IPV6_RECVHOPOPTS : 53
+IPV6_RECVPKTINFO : 49
+IPV6_RECVRTHDR : 56
+IPV6_RECVTCLASS : 66
+IPV6_RTHDR : 57
+IPV6_RTHDRDSTOPTS : 55
+IPV6_RTHDR_TYPE_0 : 0
+IPV6_TCLASS : 67
+IPV6_UNICAST_HOPS : 16
+IPV6_V6ONLY : 26
+IP_ADD_MEMBERSHIP : 35
+IP_DEFAULT_MULTICAST_LOOP : 1
+IP_DEFAULT_MULTICAST_TTL : 1
+IP_DROP_MEMBERSHIP : 36
+IP_HDRINCL : 3
+IP_MAX_MEMBERSHIPS : 20
+IP_MULTICAST_IF : 32
+IP_MULTICAST_LOOP : 34
+IP_MULTICAST_TTL : 33
+IP_OPTIONS : 4
+IP_RECVOPTS : 6
+IP_RECVRETOPTS : 7
+IP_RETOPTS : 7
+IP_TOS : 1
+IP_TRANSPARENT : 19
+IP_TTL : 2
+IntEnum : <enum 'IntEnum'>
+MSG_CMSG_CLOEXEC : 1073741824
+MSG_CONFIRM : 2048
+MSG_CTRUNC : 8
+MSG_DONTROUTE : 4
+MSG_DONTWAIT : 64
+MSG_EOR : 128
+MSG_ERRQUEUE : 8192
+MSG_FASTOPEN : 536870912
+MSG_MORE : 32768
+MSG_NOSIGNAL : 16384
+MSG_OOB : 1
+MSG_PEEK : 2
+MSG_TRUNC : 32
+MSG_WAITALL : 256
+NETLINK_DNRTMSG : 14
+NETLINK_FIREWALL : 3
+NETLINK_IP6_FW : 13
+NETLINK_NFLOG : 5
+NETLINK_ROUTE : 0
+NETLINK_USERSOCK : 2
+NETLINK_XFRM : 6
+NI_DGRAM : 16
+NI_MAXHOST : 1025
+NI_MAXSERV : 32
+NI_NAMEREQD : 8
+NI_NOFQDN : 4
+NI_NUMERICHOST : 1
+NI_NUMERICSERV : 2
+PACKET_BROADCAST : 1
+PACKET_FASTROUTE : 6
+PACKET_HOST : 0
+PACKET_LOOPBACK : 5
+PACKET_MULTICAST : 2
+PACKET_OTHERHOST : 3
+PACKET_OUTGOING : 4
+PF_CAN : 29
+PF_PACKET : 17
+PF_RDS : 21
+SCM_CREDENTIALS : 2
+SCM_RIGHTS : 1
+SHUT_RD : 0
+SHUT_RDWR : 2
+SHUT_WR : 1
+SOCK_CLOEXEC : SocketType.SOCK_CLOEXEC
+SOCK_DGRAM : SocketType.SOCK_DGRAM
+SOCK_NONBLOCK : SocketType.SOCK_NONBLOCK
+SOCK_RAW : SocketType.SOCK_RAW
+SOCK_RDM : SocketType.SOCK_RDM
+SOCK_SEQPACKET : SocketType.SOCK_SEQPACKET
+SOCK_STREAM : SocketType.SOCK_STREAM
+SOL_CAN_BASE : 100
+SOL_CAN_RAW : 101
+SOL_HCI : 0
+SOL_IP : 0
+SOL_SOCKET : 1
+SOL_TCP : 6
+SOL_TIPC : 271
+SOL_UDP : 17
+SOMAXCONN : 128
+SO_ACCEPTCONN : 30
+SO_BINDTODEVICE : 25
+SO_BROADCAST : 6
+SO_DEBUG : 1
+SO_DONTROUTE : 5
+SO_ERROR : 4
+SO_KEEPALIVE : 9
+SO_LINGER : 13
+SO_OOBINLINE : 10
+SO_PASSCRED : 16
+SO_PEERCRED : 17
+SO_PRIORITY : 12
+SO_RCVBUF : 8
+SO_RCVLOWAT : 18
+SO_RCVTIMEO : 20
+SO_REUSEADDR : 2
+SO_REUSEPORT : 15
+SO_SNDBUF : 7
+SO_SNDLOWAT : 19
+SO_SNDTIMEO : 21
+SO_TYPE : 3
+SocketIO : <class 'socket.SocketIO'>
+SocketType : <enum 'SocketType'>
+TCP_CORK : 3
+TCP_DEFER_ACCEPT : 9
+TCP_FASTOPEN : 23
+TCP_INFO : 11
+TCP_KEEPCNT : 6
+TCP_KEEPIDLE : 4
+TCP_KEEPINTVL : 5
+TCP_LINGER2 : 8
+TCP_MAXSEG : 2
+TCP_NODELAY : 1
+TCP_QUICKACK : 12
+TCP_SYNCNT : 7
+TCP_WINDOW_CLAMP : 10
+TIPC_ADDR_ID : 3
+TIPC_ADDR_NAME : 2
+TIPC_ADDR_NAMESEQ : 1
+TIPC_CFG_SRV : 0
+TIPC_CLUSTER_SCOPE : 2
+TIPC_CONN_TIMEOUT : 130
+TIPC_CRITICAL_IMPORTANCE : 3
+TIPC_DEST_DROPPABLE : 129
+TIPC_HIGH_IMPORTANCE : 2
+TIPC_IMPORTANCE : 127
+TIPC_LOW_IMPORTANCE : 0
+TIPC_MEDIUM_IMPORTANCE : 1
+TIPC_NODE_SCOPE : 3
+TIPC_PUBLISHED : 1
+TIPC_SRC_DROPPABLE : 128
+TIPC_SUBSCR_TIMEOUT : 3
+TIPC_SUB_CANCEL : 4
+TIPC_SUB_PORTS : 1
+TIPC_SUB_SERVICE : 2
+TIPC_TOP_SRV : 1
+TIPC_WAIT_FOREVER : -1
+TIPC_WITHDRAWN : 2
+TIPC_ZONE_SCOPE : 1
+_GLOBAL_DEFAULT_TIMEOUT : <object object at 0x7ff59c5fb0a0>
+__all__ : ['getfqdn', 'create_connection', 'AF_APPLETALK', 'AF_ASH', 'AF_ATMPVC', 'AF_ATMSVC', 'AF_AX25', 'AF_BLUETOOTH', 'AF_BRIDGE', 'AF_CAN', 'AF_DECnet', 'AF_ECONET', 'AF_INET', 'AF_INET6', 'AF_IPX', 'AF_IRDA', 'AF_KEY', 'AF_LLC', 'AF_NETBEUI', 'AF_NETLINK', 'AF_NETROM', 'AF_PACKET', 'AF_PPPOX', 'AF_RDS', 'AF_ROSE', 'AF_ROUTE', 'AF_SECURITY', 'AF_SNA', 'AF_TIPC', 'AF_UNIX', 'AF_UNSPEC', 'AF_WANPIPE', 'AF_X25', 'AI_ADDRCONFIG', 'AI_ALL', 'AI_CANONNAME', 'AI_NUMERICHOST', 'AI_NUMERICSERV', 'AI_PASSIVE', 'AI_V4MAPPED', 'BDADDR_ANY', 'BDADDR_LOCAL', 'BTPROTO_HCI', 'BTPROTO_L2CAP', 'BTPROTO_RFCOMM', 'BTPROTO_SCO', 'CAN_BCM', 'CAN_BCM_RX_CHANGED', 'CAN_BCM_RX_DELETE', 'CAN_BCM_RX_READ', 'CAN_BCM_RX_SETUP', 'CAN_BCM_RX_STATUS', 'CAN_BCM_RX_TIMEOUT', 'CAN_BCM_TX_DELETE', 'CAN_BCM_TX_EXPIRED', 'CAN_BCM_TX_READ', 'CAN_BCM_TX_SEND', 'CAN_BCM_TX_SETUP', 'CAN_BCM_TX_STATUS', 'CAN_EFF_FLAG', 'CAN_EFF_MASK', 'CAN_ERR_FLAG', 'CAN_ERR_MASK', 'CAN_RAW', 'CAN_RAW_ERR_FILTER', 'CAN_RAW_FILTER', 'CAN_RAW_LOOPBACK', 'CAN_RAW_RECV_OWN_MSGS', 'CAN_RTR_FLAG', 'CAN_SFF_MASK', 'CAPI', 'CMSG_LEN', 'CMSG_SPACE', 'EAI_ADDRFAMILY', 'EAI_AGAIN', 'EAI_BADFLAGS', 'EAI_FAIL', 'EAI_FAMILY', 'EAI_MEMORY', 'EAI_NODATA', 'EAI_NONAME', 'EAI_OVERFLOW', 'EAI_SERVICE', 'EAI_SOCKTYPE', 'EAI_SYSTEM', 'HCI_DATA_DIR', 'HCI_FILTER', 'HCI_TIME_STAMP', 'INADDR_ALLHOSTS_GROUP', 'INADDR_ANY', 'INADDR_BROADCAST', 'INADDR_LOOPBACK', 'INADDR_MAX_LOCAL_GROUP', 'INADDR_NONE', 'INADDR_UNSPEC_GROUP', 'IPPORT_RESERVED', 'IPPORT_USERRESERVED', 'IPPROTO_AH', 'IPPROTO_DSTOPTS', 'IPPROTO_EGP', 'IPPROTO_ESP', 'IPPROTO_FRAGMENT', 'IPPROTO_GRE', 'IPPROTO_HOPOPTS', 'IPPROTO_ICMP', 'IPPROTO_ICMPV6', 'IPPROTO_IDP', 'IPPROTO_IGMP', 'IPPROTO_IP', 'IPPROTO_IPIP', 'IPPROTO_IPV6', 'IPPROTO_NONE', 'IPPROTO_PIM', 'IPPROTO_PUP', 'IPPROTO_RAW', 'IPPROTO_ROUTING', 'IPPROTO_RSVP', 'IPPROTO_SCTP', 'IPPROTO_TCP', 'IPPROTO_TP', 'IPPROTO_UDP', 'IPV6_CHECKSUM', 'IPV6_DSTOPTS', 'IPV6_HOPLIMIT', 'IPV6_HOPOPTS', 'IPV6_JOIN_GROUP', 'IPV6_LEAVE_GROUP', 'IPV6_MULTICAST_HOPS', 'IPV6_MULTICAST_IF', 'IPV6_MULTICAST_LOOP', 'IPV6_NEXTHOP', 'IPV6_PKTINFO', 'IPV6_RECVDSTOPTS', 'IPV6_RECVHOPLIMIT', 'IPV6_RECVHOPOPTS', 'IPV6_RECVPKTINFO', 'IPV6_RECVRTHDR', 'IPV6_RECVTCLASS', 'IPV6_RTHDR', 'IPV6_RTHDRDSTOPTS', 'IPV6_RTHDR_TYPE_0', 'IPV6_TCLASS', 'IPV6_UNICAST_HOPS', 'IPV6_V6ONLY', 'IP_ADD_MEMBERSHIP', 'IP_DEFAULT_MULTICAST_LOOP', 'IP_DEFAULT_MULTICAST_TTL', 'IP_DROP_MEMBERSHIP', 'IP_HDRINCL', 'IP_MAX_MEMBERSHIPS', 'IP_MULTICAST_IF', 'IP_MULTICAST_LOOP', 'IP_MULTICAST_TTL', 'IP_OPTIONS', 'IP_RECVOPTS', 'IP_RECVRETOPTS', 'IP_RETOPTS', 'IP_TOS', 'IP_TRANSPARENT', 'IP_TTL', 'MSG_CMSG_CLOEXEC', 'MSG_CONFIRM', 'MSG_CTRUNC', 'MSG_DONTROUTE', 'MSG_DONTWAIT', 'MSG_EOR', 'MSG_ERRQUEUE', 'MSG_FASTOPEN', 'MSG_MORE', 'MSG_NOSIGNAL', 'MSG_OOB', 'MSG_PEEK', 'MSG_TRUNC', 'MSG_WAITALL', 'NETLINK_DNRTMSG', 'NETLINK_FIREWALL', 'NETLINK_IP6_FW', 'NETLINK_NFLOG', 'NETLINK_ROUTE', 'NETLINK_USERSOCK', 'NETLINK_XFRM', 'NI_DGRAM', 'NI_MAXHOST', 'NI_MAXSERV', 'NI_NAMEREQD', 'NI_NOFQDN', 'NI_NUMERICHOST', 'NI_NUMERICSERV', 'PACKET_BROADCAST', 'PACKET_FASTROUTE', 'PACKET_HOST', 'PACKET_LOOPBACK', 'PACKET_MULTICAST', 'PACKET_OTHERHOST', 'PACKET_OUTGOING', 'PF_CAN', 'PF_PACKET', 'PF_RDS', 'SCM_CREDENTIALS', 'SCM_RIGHTS', 'SHUT_RD', 'SHUT_RDWR', 'SHUT_WR', 'SOCK_CLOEXEC', 'SOCK_DGRAM', 'SOCK_NONBLOCK', 'SOCK_RAW', 'SOCK_RDM', 'SOCK_SEQPACKET', 'SOCK_STREAM', 'SOL_CAN_BASE', 'SOL_CAN_RAW', 'SOL_HCI', 'SOL_IP', 'SOL_SOCKET', 'SOL_TCP', 'SOL_TIPC', 'SOL_UDP', 'SOMAXCONN', 'SO_ACCEPTCONN', 'SO_BINDTODEVICE', 'SO_BROADCAST', 'SO_DEBUG', 'SO_DONTROUTE', 'SO_ERROR', 'SO_KEEPALIVE', 'SO_LINGER', 'SO_OOBINLINE', 'SO_PASSCRED', 'SO_PEERCRED', 'SO_PRIORITY', 'SO_RCVBUF', 'SO_RCVLOWAT', 'SO_RCVTIMEO', 'SO_REUSEADDR', 'SO_REUSEPORT', 'SO_SNDBUF', 'SO_SNDLOWAT', 'SO_SNDTIMEO', 'SO_TYPE', 'SocketType', 'TCP_CORK', 'TCP_DEFER_ACCEPT', 'TCP_FASTOPEN', 'TCP_INFO', 'TCP_KEEPCNT', 'TCP_KEEPIDLE', 'TCP_KEEPINTVL', 'TCP_LINGER2', 'TCP_MAXSEG', 'TCP_NODELAY', 'TCP_QUICKACK', 'TCP_SYNCNT', 'TCP_WINDOW_CLAMP', 'TIPC_ADDR_ID', 'TIPC_ADDR_NAME', 'TIPC_ADDR_NAMESEQ', 'TIPC_CFG_SRV', 'TIPC_CLUSTER_SCOPE', 'TIPC_CONN_TIMEOUT', 'TIPC_CRITICAL_IMPORTANCE', 'TIPC_DEST_DROPPABLE', 'TIPC_HIGH_IMPORTANCE', 'TIPC_IMPORTANCE', 'TIPC_LOW_IMPORTANCE', 'TIPC_MEDIUM_IMPORTANCE', 'TIPC_NODE_SCOPE', 'TIPC_PUBLISHED', 'TIPC_SRC_DROPPABLE', 'TIPC_SUBSCR_TIMEOUT', 'TIPC_SUB_CANCEL', 'TIPC_SUB_PORTS', 'TIPC_SUB_SERVICE', 'TIPC_TOP_SRV', 'TIPC_WAIT_FOREVER', 'TIPC_WITHDRAWN', 'TIPC_ZONE_SCOPE', 'dup', 'error', 'gaierror', 'getaddrinfo', 'getdefaulttimeout', 'gethostbyaddr', 'gethostbyname', 'gethostbyname_ex', 'gethostname', 'getnameinfo', 'getprotobyname', 'getservbyname', 'getservbyport', 'has_ipv6', 'herror', 'htonl', 'htons', 'if_indextoname', 'if_nameindex', 'if_nametoindex', 'inet_aton', 'inet_ntoa', 'inet_ntop', 'inet_pton', 'ntohl', 'ntohs', 'setdefaulttimeout', 'sethostname', 'socket', 'socketpair', 'timeout']
+__builtins__ : {'filter': <class 'filter'>, 'min': <built-in function min>, 'IndexError': <class 'IndexError'>, 'range': <class 'range'>, 'RuntimeError': <class 'RuntimeError'>, 'BytesWarning': <class 'BytesWarning'>, 'ConnectionError': <class 'ConnectionError'>, 'int': <class 'int'>, 'eval': <built-in function eval>, 'locals': <built-in function locals>, '__name__': 'builtins', 'tuple': <class 'tuple'>, 'TimeoutError': <class 'TimeoutError'>, 'BufferError': <class 'BufferError'>, 'hash': <built-in function hash>, 'BrokenPipeError': <class 'BrokenPipeError'>, 'float': <class 'float'>, 'open': <built-in function open>, 'object': <class 'object'>, 'next': <built-in function next>, 'bin': <built-in function bin>, 'slice': <class 'slice'>, 'ProcessLookupError': <class 'ProcessLookupError'>, 'AttributeError': <class 'AttributeError'>, 'sorted': <built-in function sorted>, 'ReferenceError': <class 'ReferenceError'>, 'frozenset': <class 'frozenset'>, 'ImportError': <class 'ImportError'>, 'UserWarning': <class 'UserWarning'>, 'format': <built-in function format>, 'input': <built-in function input>, 'chr': <built-in function chr>, 'ConnectionAbortedError': <class 'ConnectionAbortedError'>, 'memoryview': <class 'memoryview'>, 'OverflowError': <class 'OverflowError'>, 'ResourceWarning': <class 'ResourceWarning'>, 'KeyboardInterrupt': <class 'KeyboardInterrupt'>, 'type': <class 'type'>, 'FileExistsError': <class 'FileExistsError'>, 'RuntimeWarning': <class 'RuntimeWarning'>, 'pow': <built-in function pow>, 'OSError': <class 'OSError'>, 'InterruptedError': <class 'InterruptedError'>, 'IndentationError': <class 'IndentationError'>, 'Exception': <class 'Exception'>, 'TabError': <class 'TabError'>, 'bool': <class 'bool'>, 'BaseException': <class 'BaseException'>, 'any': <built-in function any>, 'zip': <class 'zip'>, 'UnicodeEncodeError': <class 'UnicodeEncodeError'>, 'EnvironmentError': <class 'OSError'>, 'UnicodeDecodeError': <class 'UnicodeDecodeError'>, 'NotADirectoryError': <class 'NotADirectoryError'>, 'delattr': <built-in function delattr>, 'NotImplementedError': <class 'NotImplementedError'>, 'complex': <class 'complex'>, 'dict': <class 'dict'>, 'ZeroDivisionError': <class 'ZeroDivisionError'>, 'set': <class 'set'>, 'enumerate': <class 'enumerate'>, 'BlockingIOError': <class 'BlockingIOError'>, 'iter': <built-in function iter>, 'issubclass': <built-in function issubclass>, 'GeneratorExit': <class 'GeneratorExit'>, 'staticmethod': <class 'staticmethod'>, 'NameError': <class 'NameError'>, 'divmod': <built-in function divmod>, 'ImportWarning': <class 'ImportWarning'>, 'AssertionError': <class 'AssertionError'>, 'reversed': <class 'reversed'>, 'exit': Use exit() or Ctrl-D (i.e. EOF) to exit, 'None': None, 'id': <built-in function id>, 'globals': <built-in function globals>, 'ConnectionRefusedError': <class 'ConnectionRefusedError'>, 'property': <class 'property'>, 'copyright': Copyright (c) 2001-2014 Python Software Foundation.
+All Rights Reserved.
+
+Copyright (c) 2000 BeOpen.com.
+All Rights Reserved.
+
+Copyright (c) 1995-2001 Corporation for National Research Initiatives.
+All Rights Reserved.
+
+Copyright (c) 1991-1995 Stichting Mathematisch Centrum, Amsterdam.
+All Rights Reserved., 'IOError': <class 'OSError'>, 'EOFError': <class 'EOFError'>, 'license': Type license() to see the full license text, '__loader__': <class '_frozen_importlib.BuiltinImporter'>, 'hex': <built-in function hex>, 'UnicodeError': <class 'UnicodeError'>, 'SystemError': <class 'SystemError'>, 'True': True, 'DeprecationWarning': <class 'DeprecationWarning'>, 'classmethod': <class 'classmethod'>, '__import__': <built-in function __import__>, 'TypeError': <class 'TypeError'>, 'bytes': <class 'bytes'>, 'round': <built-in function round>, 'PermissionError': <class 'PermissionError'>, 'isinstance': <built-in function isinstance>, 'ascii': <built-in function ascii>, 'SystemExit': <class 'SystemExit'>, 'setattr': <built-in function setattr>, 'UnicodeWarning': <class 'UnicodeWarning'>, '__package__': '', 'map': <class 'map'>, '__build_class__': <built-in function __build_class__>, 'max': <built-in function max>, 'quit': Use quit() or Ctrl-D (i.e. EOF) to exit, 'Warning': <class 'Warning'>, 'ConnectionResetError': <class 'ConnectionResetError'>, 'list': <class 'list'>, 'credits':     Thanks to CWI, CNRI, BeOpen.com, Zope Corporation and a cast of thousands
+    for supporting Python development.  See www.python.org for more information., 'FloatingPointError': <class 'FloatingPointError'>, 'repr': <built-in function repr>, 'KeyError': <class 'KeyError'>, 'UnicodeTranslateError': <class 'UnicodeTranslateError'>, 'ChildProcessError': <class 'ChildProcessError'>, 'PendingDeprecationWarning': <class 'PendingDeprecationWarning'>, 'help': Type help() for interactive help, or help(object) for help about object., 'ArithmeticError': <class 'ArithmeticError'>, 'vars': <built-in function vars>, '__debug__': True, 'IsADirectoryError': <class 'IsADirectoryError'>, 'len': <built-in function len>, 'exec': <built-in function exec>, '__doc__': "Built-in functions, exceptions, and other objects.\n\nNoteworthy: None is the `nil' object; Ellipsis represents `...' in slices.", 'False': False, 'hasattr': <built-in function hasattr>, 'MemoryError': <class 'MemoryError'>, 'callable': <built-in function callable>, 'getattr': <built-in function getattr>, 'print': <built-in function print>, 'ord': <built-in function ord>, 'LookupError': <class 'LookupError'>, 'SyntaxWarning': <class 'SyntaxWarning'>, 'FileNotFoundError': <class 'FileNotFoundError'>, 'SyntaxError': <class 'SyntaxError'>, 'abs': <built-in function abs>, 'NotImplemented': NotImplemented, 'StopIteration': <class 'StopIteration'>, 'all': <built-in function all>, 'Ellipsis': Ellipsis, 'str': <class 'str'>, 'compile': <built-in function compile>, 'sum': <built-in function sum>, 'FutureWarning': <class 'FutureWarning'>, 'oct': <built-in function oct>, 'ValueError': <class 'ValueError'>, 'bytearray': <class 'bytearray'>, 'super': <class 'super'>, '__spec__': ModuleSpec(name='builtins', loader=<class '_frozen_importlib.BuiltinImporter'>), 'dir': <built-in function dir>, 'UnboundLocalError': <class 'UnboundLocalError'>}
+__cached__ : /usr/lib/python3.4/__pycache__/socket.cpython-34.pyc
+__doc__ : This module provides socket operations and some related functions.
+On Unix, it supports IP (Internet Protocol) and Unix domain sockets.
+On other systems, it only supports IP. Functions specific for a
+socket are available as methods of the socket object.
+
+Functions:
+
+socket() -- create a new socket object
+socketpair() -- create a pair of new socket objects [*]
+fromfd() -- create a socket object from an open file descriptor [*]
+fromshare() -- create a socket object from data received from socket.share() [*]
+gethostname() -- return the current hostname
+gethostbyname() -- map a hostname to its IP number
+gethostbyaddr() -- map an IP number or hostname to DNS info
+getservbyname() -- map a service name and a protocol name to a port number
+getprotobyname() -- map a protocol name (e.g. 'tcp') to a number
+ntohs(), ntohl() -- convert 16, 32 bit int from network to host byte order
+htons(), htonl() -- convert 16, 32 bit int from host to network byte order
+inet_aton() -- convert IP addr string (123.45.67.89) to 32-bit packed format
+inet_ntoa() -- convert 32-bit packed format IP to string (123.45.67.89)
+socket.getdefaulttimeout() -- get the default timeout value
+socket.setdefaulttimeout() -- set the default timeout value
+create_connection() -- connects to an address, with an optional timeout and
+                       optional source address.
+
+ [*] not available on all platforms!
+
+Special objects:
+
+SocketType -- type object for socket objects
+error -- exception raised for I/O errors
+has_ipv6 -- boolean value indicating if IPv6 is supported
+
+Integer constants:
+
+AF_INET, AF_UNIX -- socket domains (first argument to socket() call)
+SOCK_STREAM, SOCK_DGRAM, SOCK_RAW -- socket types (second argument)
+
+Many other constants may be defined; these may be used in calls to
+the setsockopt() and getsockopt() methods.
+
+__file__ : /usr/lib/python3.4/socket.py
+__loader__ : <_frozen_importlib.SourceFileLoader object at 0x7ff59c529d30>
+__name__ : socket
+__package__ : 
+__spec__ : ModuleSpec(name='socket', loader=<_frozen_importlib.SourceFileLoader object at 0x7ff59c529d30>, origin='/usr/lib/python3.4/socket.py')
+_blocking_errnos : {11}
+_intenum_converter : <function _intenum_converter at 0x7ff59ad9d598>
+_realsocket : <class '_socket.socket'>
+_socket : <module '_socket' (built-in)>
+create_connection : <function create_connection at 0x7ff59adaab70>
+dup : <built-in function dup>
+errno : <module 'errno' (built-in)>
+error : <class 'OSError'>
+fromfd : <function fromfd at 0x7ff59c59f730>
+gaierror : <class 'socket.gaierror'>
+getaddrinfo : <function getaddrinfo at 0x7ff59adaabf8>
+getdefaulttimeout : <built-in function getdefaulttimeout>
+getfqdn : <function getfqdn at 0x7ff59adaa400>
+gethostbyaddr : <built-in function gethostbyaddr>
+gethostbyname : <built-in function gethostbyname>
+gethostbyname_ex : <built-in function gethostbyname_ex>
+gethostname : <built-in function gethostname>
+getnameinfo : <built-in function getnameinfo>
+getprotobyname : <built-in function getprotobyname>
+getservbyname : <built-in function getservbyname>
+getservbyport : <built-in function getservbyport>
+has_ipv6 : True
+herror : <class 'socket.herror'>
+htonl : <built-in function htonl>
+htons : <built-in function htons>
+if_indextoname : <built-in function if_indextoname>
+if_nameindex : <built-in function if_nameindex>
+if_nametoindex : <built-in function if_nametoindex>
+inet_aton : <built-in function inet_aton>
+inet_ntoa : <built-in function inet_ntoa>
+inet_ntop : <built-in function inet_ntop>
+inet_pton : <built-in function inet_pton>
+io : <module 'io' from '/usr/lib/python3.4/io.py'>
+ntohl : <built-in function ntohl>
+ntohs : <built-in function ntohs>
+os : <module 'os' from '/usr/lib/python3.4/os.py'>
+setdefaulttimeout : <built-in function setdefaulttimeout>
+sethostname : <built-in function sethostname>
+socket : <class 'socket.socket'>
+socketpair : <function socketpair at 0x7ff59adaa378>
+sys : <module 'sys' (built-in)>
+timeout : <class 'socket.timeout'>
