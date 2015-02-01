@@ -37,8 +37,66 @@ class Ethernet_frame:
     s += "IP TYPE %s\n" % ("0x%.4x" % self.e_type)
     return s
 
-    
+class IPv4:
+  """RFC 791
+    0                   1                   2                   3   
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |Version|  IHL  |Type of Service|          Total Length         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |         Identification        |Flags|      Fragment Offset    |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |  Time to Live |    Protocol   |         Header Checksum       |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                       Source Address                          |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                    Destination Address                        |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                    Options                    |    Padding    |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
+                    Example Internet Datagram Header
+  version:  4 bits
+  IHL:  4 bits
+
+    Internet Header Length is the length of the internet header in 32
+    bit words, and thus points to the beginning of the data.  Note that
+    the minimum value for a correct header is 5.
+
+  Type of Service:  8 bits
+
+    The Type of Service provides an indication of the abstract
+    parameters of the quality of service desired.  These parameters are
+    to be used to guide the selection of the actual service parameters
+    when transmitting a datagram through a particular network.  Several
+    networks offer service precedence, which somehow treats high
+    precedence traffic as more important than other traffic (generally
+    by accepting only traffic above a certain precedence at time of high
+    load).  The major choice is a three way tradeoff between low-delay,
+    high-reliability, and high-throughput.
+
+      Bits 0-2:  Precedence.
+      Bit    3:  0 = Normal Delay,      1 = Low Delay.
+      Bits   4:  0 = Normal Throughput, 1 = High Throughput.
+      Bits   5:  0 = Normal Relibility, 1 = High Relibility.
+      Bit  6-7:  Reserved for Future Use.
+
+         0     1     2     3     4     5     6     7
+      +-----+-----+-----+-----+-----+-----+-----+-----+
+      |                 |     |     |     |     |     |
+      |   PRECEDENCE    |  D  |  T  |  R  |  0  |  0  |
+      |                 |     |     |     |     |     |
+      +-----+-----+-----+-----+-----+-----+-----+-----+
+
+  """
+  TypeOfServicePrecedence = { 0b111: "Network Control",
+                              0b110: "Internetwork Control",
+                              0b101: "CRITIC/ECP",
+                              0b100: "Flash Override",
+                              0b011: "Flash",
+                              0b010: "Immediate",
+                              0b001: "Priority",
+                              0b000: "Routine" }
 
 # Converts a string of 6 characters of ethernet address into a dash separated hex string
 def eth_addr(a):
