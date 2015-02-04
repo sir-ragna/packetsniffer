@@ -1,0 +1,7 @@
+*.pyc
+*.pdf
+*.txt
+/captures/
+.idea/
+
+examples/
