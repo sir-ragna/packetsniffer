@@ -11,7 +11,6 @@ class Invalid_datagram_exception(Exception):
 
 class Ethernet_frame:
   """Ethernet 802.3 Packet format"""
-  from socket import ntohs
   from struct import unpack
 
   def readable_mac(self, mac):
@@ -61,7 +60,7 @@ class IPv4:
 
                     Example Internet Datagram Header
   """
-  from socket import ntohs, inet_ntoa
+  from socket import inet_ntoa
   from struct import unpack
   TypeOfServicePrecedence = { 0b111: "Network Control",
                               0b110: "Internetwork Control",
