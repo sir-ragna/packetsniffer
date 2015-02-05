@@ -6,6 +6,30 @@ class ErrorInvalidDatagram(Exception):
     self.message = "Invalid datagram: %s" % msg
 
 
+class IPv4Address:
+  from socket import inet_ntoa
+  """RFC 791 only defines 3 address classes. A, B and C"""
+  def __init__(self, addr):
+    self.b_address = addr
+    self.s_address = self.inet_ntoa(addr)
+    self.addr_class = "UNKNOWN"
+
+    first_byte = int("0x%.2x" % ord(addr[0]), 16)  # Can be more elegant
+
+    if first_byte < 0b01111111:  # in class a, the high order bit is zero
+      self.addr_class = "A"
+    elif first_byte < 0b10111111:  # in class b, the high order two bits are one-zero
+      self.addr_class = "B"
+    elif first_byte < 0b11011111:  # in class c, the high order three bits are one-one-zero
+      self.addr_class = "C"
+    elif self.s_address == "0.0.0.0":
+      self.addr_class = "Broadcast"
+    else:
+      self.addr_class = "Unimplemented address class. (Not in RFC 791)"
+
+  def __str__(self):
+    return "Class %s, %s" % (self.addr_class, self.s_address)
+
 class IPv4:
   """RFC 791
     0                   1                   2                   3
@@ -26,7 +50,6 @@ class IPv4:
 
                     Example Internet Datagram Header
   """
-  from socket import inet_ntoa
   from struct import unpack
   TypeOfServicePrecedence = { 0b111: "Network Control",
                               0b110: "Internetwork Control",
@@ -65,8 +88,8 @@ class IPv4:
       self.time_to_live = ipheader[5]
       self.protocol = ipheader[6]
       self.header_checksum = ipheader[7]
-      self.source_address = ipheader[8]      # IPs stored as bytes
-      self.destination_address = ipheader[9]
+      self.source_address = IPv4Address(ipheader[8])
+      self.destination_address = IPv4Address(ipheader[9])
     elif self.ihl > 5:
       # TODO implement IP datagram headers longer than 20 bytes :-)
       raise Exception("Not implemented yet")
@@ -80,6 +103,6 @@ class IPv4:
     s += "Time to live: %d\n" % self.time_to_live
     s += "Protocol: %d\n" % self.protocol
     s += "Header checksum: %s\n" % hex(self.header_checksum)
-    s += "Source IP: %s\n" % self.inet_ntoa(self.source_address)
-    s += "Destination IP: %s\n" % self.inet_ntoa(self.destination_address)
+    s += "Source IP: %s\n" % str(self.source_address)
+    s += "Destination IP: %s\n" % str(self.destination_address)
     return s

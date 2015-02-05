@@ -4,6 +4,7 @@ __author__ = 'Robbe Van der Gucht'
 class EthernetFrame:
   """Ethernet 802.3 Packet format"""
   from struct import unpack
+  from IPv4 import IPv4
 
   @staticmethod
   def readable_mac(mac):
@@ -26,10 +27,18 @@ class EthernetFrame:
     self.dst_mac = self.header[0]  # 6 bytes
     self.src_mac = self.header[1]
     self.e_type = self.header[2]  # 2 bytes
+    self.data = raw[14:]
+    self.packet = None
+
+    if self.ether_types[self.e_type] == "IPv4":
+      self.packet = self.IPv4(self.data)
 
   def __str__(self):
     s = ""
     s += "DESTINATION MAC %s\n" % self.readable_mac(self.dst_mac)
     s += "SOURCE MAC %s\n" % self.readable_mac(self.src_mac)
     s += "IP TYPE %s\n" % ("0x%.4x" % self.e_type)
+    if not self.packet is None:
+      s += "\nDATAGRAM\n"
+      s += str(self.packet)
     return s

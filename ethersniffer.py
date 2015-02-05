@@ -21,15 +21,11 @@ while 1:
                           # 65,535 <= max length of IPv4 packet
                           # + ethernet frame header
 
-  print("PACKET LENGTH: %d" % len(unit))
+  print("TOTAL ETHERNET FRAME LENGTH: %d" % len(unit))
 
   ethframe = internet.EthernetFrame(unit)
   print(str(ethframe))
 
-  if ethframe.e_type == 0x0800:
-    print("ETHERNET DATAGRAM")
-    datagram = internet.IPv4(unit[14:])
-    print(str(datagram))
 
 
 
