@@ -84,6 +84,10 @@ class IPv4:
       self.total_length = ipheader[2]
       self.identification = ipheader[3]
       self.flags = ipheader[4] >> 13
+      self.f_reserved = (0b100 & self.flags) >> 2
+      self.f_may_fragment = (0b010 & self.flags) >> 1
+      self.f_is_last = 0b001 & self.flags
+      self.f_str = "{0:03b}".format(self.flags)
       self.fragment_offset = (ipheader[4] << 3) >> 3
       self.time_to_live = ipheader[5]
       self.protocol = ipheader[6]
@@ -98,7 +102,12 @@ class IPv4:
     s = ""
     s += "Type of service: %d\n" % self.type_of_service
     s += "Total length: %d\n" % self.total_length
-    s += "Identification %s\n" % hex(self.identification)  # display as hex
+    s += "Identification: %s\t%d\n" % (hex(self.identification),
+                                       self.identification)  # display hex & number
+    s += "Flags: %s\n" % self.f_str
+    s += "\tReserved      : %s\n" % ("Not set", "Set")[self.f_reserved]
+    s += "\tMay Fragment  : %s\n" % ("Not set", "Set")[self.f_may_fragment]
+    s += "\tLast Fragment : %s\n" % ("Not set", "Set")[self.f_is_last]
     s += "ToS Precedence: %s\n" % self.TypeOfServicePrecedence[self.precedence]
     s += "Time to live: %d\n" % self.time_to_live
     s += "Protocol: %d\n" % self.protocol
