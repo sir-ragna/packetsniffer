@@ -3,4 +3,6 @@
 
 Bare bones but functional.
 
+    sudo python ethernetsniffer.py
+
 
