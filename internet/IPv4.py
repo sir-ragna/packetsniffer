@@ -6,6 +6,11 @@ class ErrorInvalidDatagram(Exception):
     self.message = "Invalid datagram: %s" % msg
 
 
+class Unimplemented(Exception):
+  def __init__(self, msg=''):
+    self.message = "Uniplemented: %s" % msg
+
+
 class IPv4Address:
   from socket import inet_ntoa
   """RFC 791 only defines 3 address classes. A, B and C"""
@@ -28,7 +33,8 @@ class IPv4Address:
       self.addr_class = "Unimplemented address class. (Not in RFC 791)"
 
   def __str__(self):
-    return "Class %s, %s" % (self.addr_class, self.s_address)
+    return "%s\tClass %s" % (self.s_address, self.addr_class)
+
 
 class IPv4:
   """RFC 791
@@ -77,7 +83,7 @@ class IPv4:
     # H - unsigned short  (int)    16 bits
     # s - char[]          (bytes)  8[] bits
 
-    if self.ihl == 5: # minimum
+    if self.ihl >= 5: # minimum
       ipheader = self.unpack(unpackstr, raw_datagram[:5 * 4])  # 5 * 4 bytes | 5 * 32 bits
       self.type_of_service = ipheader[1]  # TODO: details page 12 RFC 791
       self.precedence = self.type_of_service >> 5
@@ -94,9 +100,9 @@ class IPv4:
       self.header_checksum = ipheader[7]
       self.source_address = IPv4Address(ipheader[8])
       self.destination_address = IPv4Address(ipheader[9])
-    elif self.ihl > 5:
-      # TODO implement IP datagram headers longer than 20 bytes :-)
-      raise Exception("Not implemented yet")
+      if self.ihl > 5:
+        # TODO implement IP datagram headers longer than 20 bytes :-)
+        raise Exception("Not implemented yet [IP HEADER LONGER THAN 20 BYTES]")
 
   def __str__(self):
     s = ""
@@ -112,6 +118,6 @@ class IPv4:
     s += "Time to live: %d\n" % self.time_to_live
     s += "Protocol: %d\n" % self.protocol
     s += "Header checksum: %s\n" % hex(self.header_checksum)
-    s += "Source IP: %s\n" % str(self.source_address)
-    s += "Destination IP: %s\n" % str(self.destination_address)
+    s += "Source IP      : %s\n" % str(self.source_address)
+    s += "Destination IP : %s\n" % str(self.destination_address)
     return s

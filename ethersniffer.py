@@ -24,7 +24,10 @@ while 1:
 
   print("TOTAL ETHERNET FRAME LENGTH: %d" % len(unit))
 
-  ethframe = internet.EthernetFrame(unit)
+  try:
+    ethframe = internet.EthernetFrame(unit)
+  except:
+    pass
   print(str(ethframe))
 
 
