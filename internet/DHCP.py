@@ -60,7 +60,8 @@ class DHCP:
 
   def __str__(self):
     s = "\nDHCP - Dynamic Host Configuration Protocol\n"
-    s += "Message type: %d - %s\n" % (self.op, (('Boot Request', 'Boot Reply')[self.op]))
+    s += "Message type: %d - %s\n" % (self.op, (('Boot Request', 'Boot Reply')[self.op - 1]))
+                                                                          # ^ op is not zero-based
     s += "Hardware type: %s\n" % hex(self.htype)
     s += "Hardware address length: %d\n" % self.hlen
     s += "Hops: %d\n" % self.hops
@@ -71,7 +72,7 @@ class DHCP:
     s += "Your (client) IP address: %s\n" % self.yiaddr
     s += "Next Server IP address  : %s\n" % self.siaddr
     s += "Relay agent IP address  : %s\n" % self.giaddr
-    s += "Client MAC address: %s\n" % hex(self.chaddr)
+    s += "Client MAC address: %s\n" % self.chaddr
     s += "Server host name: %s\n" % self.sname
     s += "Boot file: %s\n" % self.file
     return s
