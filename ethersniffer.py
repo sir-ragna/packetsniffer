@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
-import socket, sys
+import socket
+import sys
 import internet
 
 # struct doc: http://docs.activestate.com/activepython/3.0/python/library/struct.html
@@ -26,8 +27,11 @@ while 1:
 
   try:
     ethframe = internet.EthernetFrame(unit)
-  except:
-    pass
+  except internet.Unimplemented as err:
+    print(err.msg)
+  except internet.ErrorInvalidDatagram as err:
+    print(err.msg)
+
   print(str(ethframe))
 
 

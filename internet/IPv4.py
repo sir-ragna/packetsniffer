@@ -75,7 +75,11 @@ class IPv4:
     print("IHL: %d" % self.ihl)
 
     if self.ihl < 5:  # less then minimum length
-      raise ErrorInvalidDatagram("IHL is less than minimum(5). IHL :: " + str(self.ihl))
+      raise ErrorInvalidDatagram("IP Header Length is less than minimum(5 * 32 bit words). IHL :: " + str(self.ihl))
+
+    if self.ihl > 5:  # not implemented yet
+      # TODO implement IP datagram headers longer than 20 bytes :-)
+      raise Unimplemented("Options field not implemented. Page 15 RFC 791")
 
     unpackstr = '!BBHHHBBH4s4s'  # for ihl == 5
     # ! - big-endian (network std)
@@ -83,8 +87,8 @@ class IPv4:
     # H - unsigned short  (int)    16 bits
     # s - char[]          (bytes)  8[] bits
 
-    if self.ihl >= 5: # minimum
-      ipheader = self.unpack(unpackstr, raw_datagram[:5 * 4])  # 5 * 4 bytes | 5 * 32 bits
+    if self.ihl == 5:
+      ipheader = self.unpack(unpackstr, raw_datagram[:self.ihl * 4])  # 5 * 4 bytes | 5 * 32 bits
       self.type_of_service = ipheader[1]  # TODO: details page 12 RFC 791
       self.precedence = self.type_of_service >> 5
       self.total_length = ipheader[2]
@@ -100,9 +104,8 @@ class IPv4:
       self.header_checksum = ipheader[7]
       self.source_address = IPv4Address(ipheader[8])
       self.destination_address = IPv4Address(ipheader[9])
-      if self.ihl > 5:
-        # TODO implement IP datagram headers longer than 20 bytes :-)
-        raise Exception("Not implemented yet [IP HEADER LONGER THAN 20 BYTES]")
+
+
 
   def __str__(self):
     s = ""
