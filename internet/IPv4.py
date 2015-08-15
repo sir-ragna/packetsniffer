@@ -57,6 +57,7 @@ class IPv4:
                     Example Internet Datagram Header
   """
   from struct import unpack
+  from UDP import UDP
   TypeOfServicePrecedence = { 0b111: "Network Control",
                               0b110: "Internetwork Control",
                               0b101: "CRITIC/ECP",
@@ -72,7 +73,6 @@ class IPv4:
     vihl = self.unpack("!B", raw_datagram[:1])  # version + ip header length
     self.version = vihl[0] >> 4
     self.ihl = vihl[0] & 0x0F  # ihl => number of 32 bit words in header (max: 15)
-    print("IHL: %d" % self.ihl)
 
     if self.ihl < 5:  # less then minimum length
       raise ErrorInvalidDatagram("IP Header Length is less than minimum(5 * 32 bit words). IHL :: " + str(self.ihl))
@@ -84,6 +84,7 @@ class IPv4:
     # s - char[]          (bytes)  8[] bits
 
     if self.ihl > 5:
+      # capture options if they exist
       optionlen = self.ihl - 5
       self.unpackstr + str(4 * optionlen) + 's'
 
@@ -107,7 +108,9 @@ class IPv4:
     if self.ihl > 5:
       self.options = ipheader[10]
 
-
+    self.transport_layer = None
+    if self.protocol == 17:
+      self.transport_layer = self.UDP(raw_datagram[self.ihl * 4:])
 
   def __str__(self):
     s = ""
@@ -130,5 +133,8 @@ class IPv4:
 
     if self.ihl > 5:
       s += "Options        : %s\n" % hex(self.options)
+
+    if self.transport_layer is not None:
+      s += str(self.transport_layer)
 
     return s
