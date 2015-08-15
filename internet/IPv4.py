@@ -77,41 +77,44 @@ class IPv4:
     if self.ihl < 5:  # less then minimum length
       raise ErrorInvalidDatagram("IP Header Length is less than minimum(5 * 32 bit words). IHL :: " + str(self.ihl))
 
-    if self.ihl > 5:  # not implemented yet
-      # TODO implement IP datagram headers longer than 20 bytes :-)
-      raise Unimplemented("Options field not implemented. Page 15 RFC 791")
-
-    unpackstr = '!BBHHHBBH4s4s'  # for ihl == 5
+    self.unpackstr = '!BBHHHBBH4s4s'  # for ihl == 5
     # ! - big-endian (network std)
     # B - unsigned char   (int)    8 bits
     # H - unsigned short  (int)    16 bits
     # s - char[]          (bytes)  8[] bits
 
-    if self.ihl == 5:
-      ipheader = self.unpack(unpackstr, raw_datagram[:self.ihl * 4])  # 5 * 4 bytes | 5 * 32 bits
-      self.type_of_service = ipheader[1]  # TODO: details page 12 RFC 791
-      self.precedence = self.type_of_service >> 5
-      self.total_length = ipheader[2]
-      self.identification = ipheader[3]
-      self.flags = ipheader[4] >> 13
-      self.f_reserved = (0b100 & self.flags) >> 2
-      self.f_may_fragment = (0b010 & self.flags) >> 1
-      self.f_is_last = 0b001 & self.flags
-      self.f_str = "{0:03b}".format(self.flags)
-      self.fragment_offset = (ipheader[4] << 3) >> 3
-      self.time_to_live = ipheader[5]
-      self.protocol = ipheader[6]
-      self.header_checksum = ipheader[7]
-      self.source_address = IPv4Address(ipheader[8])
-      self.destination_address = IPv4Address(ipheader[9])
+    if self.ihl > 5:
+      optionlen = self.ihl - 5
+      self.unpackstr + str(4 * optionlen) + 's'
+
+    ipheader = self.unpack(self.unpackstr, raw_datagram[:self.ihl * 4])  # 5 * 4 bytes | 5 * 32 bits
+    self.type_of_service = ipheader[1]  # TODO: details page 12 RFC 791
+    self.precedence = self.type_of_service >> 5
+    self.total_length = ipheader[2]
+    self.identification = ipheader[3]
+    self.flags = ipheader[4] >> 13
+    self.f_reserved = (0b100 & self.flags) >> 2
+    self.f_may_fragment = (0b010 & self.flags) >> 1
+    self.f_is_last = 0b001 & self.flags
+    self.f_str = "{0:03b}".format(self.flags)
+    self.fragment_offset = (ipheader[4] << 3) >> 3
+    self.time_to_live = ipheader[5]
+    self.protocol = ipheader[6]
+    self.header_checksum = ipheader[7]
+    self.source_address = IPv4Address(ipheader[8])
+    self.destination_address = IPv4Address(ipheader[9])
+
+    if self.ihl > 5:
+      self.options = ipheader[10]
 
 
 
   def __str__(self):
     s = ""
-    s += "Type of service: %d\n" % self.type_of_service
-    s += "Total length: %d\n" % self.total_length
-    s += "Identification: %s\t%d\n" % (hex(self.identification),
+    s += "Type of service : %d\n" % self.type_of_service
+    s += "IP Header Length: %d\n" % self.ihl
+    s += "Total length    : %d\n" % self.total_length
+    s += "Identification  : %s\t%d\n" % (hex(self.identification),
                                        self.identification)  # display hex & number
     s += "Flags: %s\n" % self.f_str
     s += "\tReserved      : %s\n" % ("Not set", "Set")[self.f_reserved]
@@ -123,4 +126,9 @@ class IPv4:
     s += "Header checksum: %s\n" % hex(self.header_checksum)
     s += "Source IP      : %s\n" % str(self.source_address)
     s += "Destination IP : %s\n" % str(self.destination_address)
+    s += "Unpack string  : %s\n" % self.unpackstr
+
+    if self.ihl > 5:
+      s += "Options        : %s\n" % hex(self.options)
+
     return s
