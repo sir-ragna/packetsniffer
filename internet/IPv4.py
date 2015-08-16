@@ -67,6 +67,35 @@ class IPv4:
                               0b001: "Priority",
                               0b000: "Routine" }
 
+  # List take from RFC 790 P6.
+  # IANA should have more updated list.
+  protocol_codes = { 1 : "ICMP",
+                     3 : "Gateway-to-Gateway",
+                     4 : "CMCC Gateway Monitoring Message",
+                     5 : "ST",
+                     6 : "TCP",
+                     7 : "ULC",
+                     9 : "Secure",
+                     10: "BBN RCC Monitoring",
+                     11: "NVP",
+                     12: "PUP",
+                     13: "Pluribus",
+                     14: "Telenet",
+                     15: "XNET",
+                     16: "Chaos",
+                     17: "UDP",
+                     18: "Multiplexing",
+                     19: "DCN",
+                     20: "TAC Monitoring",
+                     63: "any local network",
+                     64: "SATNET and Backroom EXPAK",
+                     65: "MIT Subnet Support",
+                     69: "SATNET Monitoring",
+                     71: "Internet Packet Core Utility",
+                     76: "Backroom SATNET Monitoring",
+                     78: "WIDEBAND Monitoring",
+                     79: "WIDEBAND EXPAK"}
+
   def __init__(self, raw_datagram=None):
     if raw_datagram is None:
       raise ErrorInvalidDatagram("Cannot unpack empty datagram.")
@@ -124,8 +153,11 @@ class IPv4:
     s += "\tMay Fragment  : %s\n" % ("Not set", "Set")[self.f_may_fragment]
     s += "\tLast Fragment : %s\n" % ("Not set", "Set")[self.f_is_last]
     s += "ToS Precedence: %s\n" % self.TypeOfServicePrecedence[self.precedence]
-    s += "Time to live: %d\n" % self.time_to_live
-    s += "Protocol: %d\n" % self.protocol
+    s += "Time to live  : %d\n" % self.time_to_live
+    if self.protocol in self.protocol_codes:
+      s += "Protocol      : %d (%s)\n" % (self.protocol, self.protocol_codes[self.protocol])
+    else:
+      s += "Protocol      : %d\n" % self.protocol
     s += "Header checksum: %s\n" % hex(self.header_checksum)
     s += "Source IP      : %s\n" % str(self.source_address)
     s += "Destination IP : %s\n" % str(self.destination_address)
