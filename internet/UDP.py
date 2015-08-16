@@ -4,6 +4,7 @@ __author__ = 'Robbe Van der Gucht'
 class UDP:
   from struct import unpack
   from DHCP import DHCP
+
   def __init__(self, datagram):
     """RFC 768 - User Datagram Protocol
     0       7 8     15 16    23 24    31
@@ -30,7 +31,8 @@ class UDP:
     self.checksum = udpheader[3]
 
     self.application_layer = None
-    if (self.source_port == 67 and self.destination_port == 68) or (self.source_port == 68 and self.destination_port == 67):
+    if (self.source_port == 67 and self.destination_port == 68) or \
+       (self.source_port == 68 and self.destination_port == 67):
       self.application_layer = self.DHCP(datagram[8:])
 
   def __str__(self):

@@ -1,15 +1,15 @@
 __author__ = 'Robbe Van der Gucht'
 
 
+def readable_mac(mac):
+    return "%.2x:%.2x:%.2x:%.2x:%.2x:%.2x" % (ord(mac[0]), ord(mac[1]), ord(mac[2]),
+                                              ord(mac[3]), ord(mac[4]), ord(mac[5]))
+
+
 class EthernetFrame:
   """Ethernet 802.3 Packet format"""
   from struct import unpack
   from IPv4 import IPv4
-
-  @staticmethod
-  def readable_mac(mac):
-    return "%.2x:%.2x:%.2x:%.2x:%.2x:%.2x" % (ord(mac[0]), ord(mac[1]), ord(mac[2]),
-                                              ord(mac[3]), ord(mac[4]), ord(mac[5]))
 
   def __init__(self, raw):
     self.raw = raw
@@ -35,10 +35,15 @@ class EthernetFrame:
 
   def __str__(self):
     s = ""
-    s += "DESTINATION MAC %s\n" % self.readable_mac(self.dst_mac)
-    s += "SOURCE MAC %s\n" % self.readable_mac(self.src_mac)
-    s += "IP TYPE %s\n" % ("0x%.4x" % self.e_type)
+    s += "DESTINATION MAC %s\n" % readable_mac(self.dst_mac)
+    s += "SOURCE MAC %s\n" % readable_mac(self.src_mac)
+
+    if self.e_type in self.ether_types:
+      s += "IP TYPE %s (%s)\n" % (("0x%.4x" % self.e_type), self.ether_types[self.e_type])
+    else:
+      s += "IP TYPE %s\n" % ("0x%.4x" % self.e_type)
+
     if not self.packet is None:
-      s += "\nDATAGRAM\n"
+      s += "\nDATAGRAM - " + self.ether_types[self.e_type] + "\n"
       s += str(self.packet)
     return s

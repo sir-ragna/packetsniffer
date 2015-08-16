@@ -1,6 +1,10 @@
 __author__ = 'Robbe Van der Gucht'
 
 
+def readable_mac(mac):
+    return "%.2x:%.2x:%.2x:%.2x:%.2x:%.2x" % (ord(mac[0]), ord(mac[1]), ord(mac[2]),
+                                              ord(mac[3]), ord(mac[4]), ord(mac[5]))
+
 class DHCP:
   from struct import unpack
   from IPv4 import IPv4Address
@@ -54,7 +58,7 @@ class DHCP:
     self.yiaddr = self.IPv4Address(header[8])  # 4s
     self.siaddr = self.IPv4Address(header[9])  # 4s
     self.giaddr = self.IPv4Address(header[10]) # 4s
-    self.chaddr = header[11] # 16s
+    self.chaddr = header[11][:self.hlen] # 16s
     self.sname  = header[12] # 64s
     self.file   = header[13] # 128s
 
@@ -72,7 +76,20 @@ class DHCP:
     s += "Your (client) IP address: %s\n" % self.yiaddr
     s += "Next Server IP address  : %s\n" % self.siaddr
     s += "Relay agent IP address  : %s\n" % self.giaddr
-    s += "Client MAC address: %s\n" % self.chaddr
-    s += "Server host name: %s\n" % self.sname
-    s += "Boot file: %s\n" % self.file
+    if self.htype == 0x01:
+      # Ethernet MAC address
+      s += "Client MAC address: %s\n" % readable_mac(self.chaddr)
+    else:
+      s += "Client HW address: %s\n" % self.chaddr
+
+    if self.sname == '\x00' * 64:
+      s += "No Server host name\n"
+    else:
+      s += "Server host name: %s\n" % self.sname
+
+    if self.file == '\x00' * 128:
+      s += "No boot file\n"
+    else:
+      s += "Boot file: %s\n" % self.file
+
     return s

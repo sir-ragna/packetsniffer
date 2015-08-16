@@ -23,6 +23,7 @@ while 1:
                           # 65,535 <= max length of IPv4 packet
                           # + ethernet frame header
 
+  print('#' * 80)
   print("TOTAL ETHERNET FRAME LENGTH: %d" % len(unit))
 
   try:
