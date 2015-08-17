@@ -40,7 +40,13 @@ class DHCP:
   |                                                               |
   |                          options (variable)                   |
   +---------------------------------------------------------------+
+
+  RFC 2132 talks about DHCP options. subnetmask/def gateway/...
   """
+
+  MAGIC_COOKIE_CONST = '\x63\x82\x53\x63'  # RFC 1497 P.2
+  """Magic cookie was proposed in RFC 951 (Bootstrap Protocol)
+  In RFC 1497 a constant was chosen as the original vendor field from the Bootp was deprecated."""
 
   def __init__(self, datagram):
     unpackstr = "!BBBBIHH4s4s4s4s16s64s128s"
@@ -61,6 +67,32 @@ class DHCP:
     self.chaddr = header[11][:self.hlen] # 16s
     self.sname  = header[12] # 64s
     self.file   = header[13] # 128s
+
+    self.vendor_options = []
+
+    # Check for magic Cookie
+    if self.MAGIC_COOKIE_CONST == self.unpack('!4s', datagram[236:240])[0]:
+      self.magic_cookie = True
+      self.parse_optionals(datagram[240:])
+    else:
+      self.magic_cookie = False
+
+  def parse_optionals(self, option_data):
+
+    while len(option_data) > 0:
+      peek = self.unpack('!B', option_data[0])
+
+      if peek == 0x00:  # Padding, discard
+        option_data = option_data[1:]
+        continue
+      elif peek == 0xFF:  # End marker, subsequent octets are padding
+        break
+
+      # Create a tuple of (code(int), len(int), data(raw bytes)), append this to vendor_options
+      vop_code, vop_length = self.unpack('!BB', option_data)
+      vop_raw_value = option_data[2:2 + vop_length]
+      self.vendor_options.append((vop_code, vop_length, vop_raw_value))
+      option_data = option_data[2 + vop_length:]
 
   def __str__(self):
     s = "\nDHCP - Dynamic Host Configuration Protocol\n"
@@ -91,5 +123,10 @@ class DHCP:
       s += "No boot file\n"
     else:
       s += "Boot file: %s\n" % self.file
+
+    if self.magic_cookie:
+      s += "Magic Cookie is present(rfc: 1497)\n"
+    else:
+      s += "No Magic Cookie :-(\n"
 
     return s
