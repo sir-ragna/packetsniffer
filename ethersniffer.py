@@ -3,18 +3,28 @@
 import socket
 import sys
 import internet
+import logging
+import atexit
 
-# struct doc: http://docs.activestate.com/activepython/3.0/python/library/struct.html
-# ethernet:  http://networksorcery.com/enp/protocol/ethernet.htm
+"""Listen on an ethernet port and print out traffic"""
 
-# Converts a string of 6 characters of ethernet address into a dash separated hex string
+# Set up logger
+log_file = 'ethersniffer.log'
+logging.basicConfig(filename=log_file,
+                    level=logging.DEBUG,
+                    format='%(levelname)s:%(asctime)s:%(message)s')
+logger = logging.getLogger(__name__)
 
+
+@atexit.register
+def check_logs():
+  print("\nCheck log file %s for errors" % log_file)
 
 try:
   s = socket.socket(socket.AF_PACKET, socket.SOCK_RAW, socket.ntohs(0x0003))
   # socket.ntohs converts bytes from little endian(intel) to big endian(network)
 except socket.error, msg:
-  print("Socket could not be created. Error Code: %s\nMessage: %s\n" % (str(msg[0]), str(msg[1])))
+  logging.critical("Socket could not be created. Error Code: %s Message: %s", str(msg[0]), str(msg[1]))
   sys.exit(1)
 
 while 1:
