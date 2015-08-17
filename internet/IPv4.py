@@ -1,5 +1,6 @@
 __author__ = 'Robbe Van der Gucht'
 
+import logging
 
 class ErrorInvalidDatagram(Exception):
   def __init__(self, msg=''):
@@ -102,6 +103,7 @@ class IPv4:
     vihl = self.unpack("!B", raw_datagram[:1])  # version + ip header length
     self.version = vihl[0] >> 4
     self.ihl = vihl[0] & 0x0F  # ihl => number of 32 bit words in header (max: 15)
+    logging.debug("IP Header Length: %d", self.ihl)
 
     if self.ihl < 5:  # less then minimum length
       raise ErrorInvalidDatagram("IP Header Length is less than minimum(5 * 32 bit words). IHL :: " + str(self.ihl))
@@ -114,8 +116,10 @@ class IPv4:
 
     if self.ihl > 5:
       # capture options if they exist
-      optionlen = self.ihl - 5
-      self.unpackstr + str(4 * optionlen) + 's'
+      optionlen = (self.ihl - 5) * 4  # nr of option bytes
+      self.unpackstr += 'B' * optionlen
+
+    logging.info("IPv4 Unpack string: %s", self.unpackstr)
 
     ipheader = self.unpack(self.unpackstr, raw_datagram[:self.ihl * 4])  # 5 * 4 bytes | 5 * 32 bits
     self.type_of_service = ipheader[1]  # TODO: details page 12 RFC 791
@@ -135,7 +139,7 @@ class IPv4:
     self.destination_address = IPv4Address(ipheader[9])
 
     if self.ihl > 5:
-      self.options = ipheader[10]
+      self.options = ipheader[10:]
 
     self.transport_layer = None
     if self.protocol == 17:
@@ -147,7 +151,7 @@ class IPv4:
     s += "IP Header Length: %d\n" % self.ihl
     s += "Total length    : %d\n" % self.total_length
     s += "Identification  : %s\t%d\n" % (hex(self.identification),
-                                       self.identification)  # display hex & number
+                                      self.identification)  # display hex & number
     s += "Flags: %s\n" % self.f_str
     s += "\tReserved      : %s\n" % ("Not set", "Set")[self.f_reserved]
     s += "\tMay Fragment  : %s\n" % ("Not set", "Set")[self.f_may_fragment]
@@ -161,10 +165,10 @@ class IPv4:
     s += "Header checksum: %s\n" % hex(self.header_checksum)
     s += "Source IP      : %s\n" % str(self.source_address)
     s += "Destination IP : %s\n" % str(self.destination_address)
-    s += "Unpack string  : %s\n" % self.unpackstr
 
     if self.ihl > 5:
-      s += "Options        : %s\n" % hex(self.options)
+      formatstr = "IP Options :" + " 0x%.2x" * len(self.options)
+      s += formatstr % self.options
 
     if self.transport_layer is not None:
       s += str(self.transport_layer)
