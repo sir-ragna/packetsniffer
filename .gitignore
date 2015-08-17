@@ -1,6 +1,7 @@
 *.pyc
 *.pdf
 *.txt
+*.log
 /captures/
 .idea/
 
