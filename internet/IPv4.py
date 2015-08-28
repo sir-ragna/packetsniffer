@@ -119,7 +119,7 @@ class IPv4:
       optionlen = (self.ihl - 5) * 4  # nr of option bytes
       self.unpackstr += 'B' * optionlen
 
-    logging.info("IPv4 Unpack string: %s", self.unpackstr)
+    logging.debug("IPv4 Unpack string: %s", self.unpackstr)
 
     ipheader = self.unpack(self.unpackstr, raw_datagram[:self.ihl * 4])  # 5 * 4 bytes | 5 * 32 bits
     self.type_of_service = ipheader[1]  # TODO: details page 12 RFC 791
