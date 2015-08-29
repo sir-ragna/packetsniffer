@@ -5,7 +5,7 @@ import socket
 import sys
 import logging
 import internet
-from data import init_datastore, save_packets, save_packet, retrieve_packets
+from data import init_datastore,save_packet
 import atexit
 
 # Set up logger
@@ -34,9 +34,9 @@ class NetworkInterface:
     else:
       self.mac_address = mac_address
 
-  def start_listening(self, promiscuous=False):
+  def start_listening(self, datastore_file='packets.dat'):
     """Listen for incoming traffic"""
-    datastore_file = 'packets.dat'
+
     try:
       s = socket.socket(socket.AF_PACKET, socket.SOCK_RAW, socket.ntohs(0x0003))
       # socket.ntohs converts bytes from little endian(intel) to big endian(network)
@@ -62,7 +62,8 @@ class NetworkInterface:
         except internet.ErrorInvalidDatagram as err:
           logging.error(err.msg)
 
-        #print(str(ethframe))
+        print(str(ethframe))
+
     except KeyboardInterrupt:
       logging.info("Keyboard interrupt received")
       try:

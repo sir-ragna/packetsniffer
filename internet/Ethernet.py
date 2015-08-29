@@ -43,7 +43,7 @@ class EthernetFrame:
     else:
       s += "IP TYPE %s\n" % ("0x%.4x" % self.e_type)
 
-    if not self.packet is None:
+    if self.packet is not None:
       s += "\nDATAGRAM - " + self.ether_types[self.e_type] + "\n"
       s += str(self.packet)
     return s

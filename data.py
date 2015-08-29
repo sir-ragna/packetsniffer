@@ -18,7 +18,6 @@ def init_datastore(filename):
 def save_packets(newpackets, file_name):
   try:
     with open(file_name, 'rb') as file_handle:
-
       storedpackets = pickle.load(file_handle)
       logging.debug("Opened %s for writing packets", str(file_name))
       file_handle.close()
