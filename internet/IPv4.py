@@ -14,13 +14,20 @@ class Unimplemented(Exception):
 
 class IPv4Address:
   from socket import inet_ntoa
+  from socket import inet_aton
   """RFC 791 only defines 3 address classes. A, B and C"""
+
   def __init__(self, addr):
-    self.b_address = addr
-    self.s_address = self.inet_ntoa(addr)
+    if '.' in addr:  # ascii to native
+      self.s_address = addr
+      self.b_address = self.inet_aton(addr)
+    else:  # native to ascii
+      self.b_address = addr
+      self.s_address = self.inet_ntoa(addr)
+
     self.addr_class = "UNKNOWN"
 
-    first_byte = int("0x%.2x" % ord(addr[0]), 16)  # Can be more elegant
+    first_byte = int("0x%.2x" % ord(self.b_address[0]), 16)  # Can be more elegant
 
     if first_byte < 0b01111111:  # in class a, the high order bit is zero
       self.addr_class = "A"
