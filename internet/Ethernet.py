@@ -30,7 +30,7 @@ class EthernetFrame:
     self.data = raw[14:]
     self.packet = None
 
-    if self.ether_types[self.e_type] == "IPv4":
+    if self.e_type in self.ether_types and self.ether_types[self.e_type] == "IPv4":
       self.packet = self.IPv4(self.data)
 
   def __str__(self):
