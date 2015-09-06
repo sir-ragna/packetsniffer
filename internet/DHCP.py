@@ -78,15 +78,64 @@ class DHCP:
     if self.MAGIC_COOKIE_CONST == self.unpack('!4s', datagram[236:240])[0]:
       logging.debug("DHCP Magic cookie found")
       self.magic_cookie = True
-      self.parse_optionals(datagram[240:])
+      self.unpack_vendor_extensions(datagram[240:])
     else:
       self.magic_cookie = False
       logging.warning("DHCP Magic cookie is absent")
+      # I'm not really planning on supporting BOOTP
+      # but BOOTP vendor extensions parsing code would go here
 
     if self.htype != 0x01:
       logging.warning("Hardware type is not an ethernet mac address")
 
-  def parse_optionals(self, option_data):
+
+  def parse_vendor_extensions(self):
+    def subnet_mask(l, bytes):
+      """Client's subnet mask rfc 950
+      MUST come before router option"""
+      pass
+    def time_offset(l, bytes):
+      """client's subnet offset from UTC. Page 6"""
+      pass
+    def router_option(l, bytes):
+      """List of router IP addresses on subnet
+      SHOULD be in order of preference"""
+      pass
+    def time_server_option(l, bytes):
+      """RFC 868"""
+      pass
+    def name_server_option(l, bytes):
+      """IEN 116 name servers"""
+      pass
+    def domain_name_server_option(l, bytes):
+      """list of Domain Name System name servers
+      STD 13, RFC 1035"""
+      pass
+    def log_server_option(l, bytes):
+      """list of MIT-LCS UDP log servers"""
+      pass
+    def cookie_server_option(l, bytes):
+      """RFC 865"""
+      pass
+    def lpr_server_option(l, bytes):
+      """Line printer servers"""
+      pass
+    def impress_server_option(l, bytes):
+      """Imagen Impress servers"""
+      pass
+    def resource_location_server_option(l, bytes):
+      """RFC 887"""
+      pass
+    extension_lookup = {
+      0x01: subnet_mask,
+      0x02: time_offset,
+      0x03: router_option,
+      0x04: time_server_option,
+      0x05: name_server_option,
+    }
+
+  def unpack_vendor_extensions(self, option_data):
+    """Based upon RFC 2132"""
     logging.debug("Option data length: %d" % len(option_data))
 
     while len(option_data) > 0:
@@ -107,7 +156,11 @@ class DHCP:
       # Create a tuple of (code(int), len(int), data(raw bytes)), append this to vendor_options
       vop_code, vop_length = self.unpack('!BB', option_data[:2])
       vop_raw_value = option_data[2:2 + vop_length]
+
+      # Add this option to the list of vendor options
       self.vendor_options.append((vop_code, vop_length, vop_raw_value))
+
+      # Cut of this option
       option_data = option_data[2 + vop_length:]
 
   def __str__(self):
