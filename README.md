@@ -13,3 +13,7 @@ Bare bones but functional.
 - UDP
 - DHCP (partially)
 
+## goal ##
+
+Learn how TCP/IP works and can be implemented.
+
