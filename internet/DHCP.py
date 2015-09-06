@@ -99,7 +99,8 @@ class DHCP:
         continue
       elif peek == 0xFF:  # End marker, subsequent octets are padding
         logging.debug("DHCP Options end marker")
-        # should be padding -- TODO do a check to verify this
+        if reduce(lambda a, b: a | self.unpack('!B', b)[0], option_data[1:], 0x00) != 0x00:
+          logging.critical("DHCP Options padding pollution")
         break
 
       logging.debug("Unpacking option. len: %d" % len(option_data))
