@@ -1,13 +1,12 @@
 __author__ = 'Robbe Van der Gucht'
 
+import logging
+from MacAddress import readable_mac
 
-def readable_mac(mac):
-    return "%.2x:%.2x:%.2x:%.2x:%.2x:%.2x" % (ord(mac[0]), ord(mac[1]), ord(mac[2]),
-                                              ord(mac[3]), ord(mac[4]), ord(mac[5]))
 
 class DHCP:
   from struct import unpack
-  from IPv4 import IPv4Address
+  from IPv4Address import IPv4Address
   """RFC 2131 - Dynamic Host Configuration Protocol
   0                   1                   2                   3
   0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
@@ -70,26 +69,42 @@ class DHCP:
 
     self.vendor_options = []
 
+    logging.debug("ciaddr: %s" % self.ciaddr)
+    logging.debug("yiaddr: %s" % self.yiaddr)
+    logging.debug("siaddr: %s" % self.siaddr)
+    logging.debug("giaddr: %s" % self.giaddr)
+
     # Check for magic Cookie
     if self.MAGIC_COOKIE_CONST == self.unpack('!4s', datagram[236:240])[0]:
+      logging.debug("DHCP Magic cookie found")
       self.magic_cookie = True
       self.parse_optionals(datagram[240:])
     else:
       self.magic_cookie = False
+      logging.warning("DHCP Magic cookie is absent")
+
+    if self.htype != 0x01:
+      logging.warning("Hardware type is not an ethernet mac address")
 
   def parse_optionals(self, option_data):
+    logging.debug("Option data length: %d" % len(option_data))
 
     while len(option_data) > 0:
-      peek = self.unpack('!B', option_data[0])
+      peek = self.unpack('!B', option_data[:1])[0]
+      logging.debug("Parsing DHCP option code: %s" % str(peek))
 
       if peek == 0x00:  # Padding, discard
+        logging.debug("DHCP Options padding")
         option_data = option_data[1:]
         continue
       elif peek == 0xFF:  # End marker, subsequent octets are padding
+        logging.debug("DHCP Options end marker")
+        # should be padding -- TODO do a check to verify this
         break
 
+      logging.debug("Unpacking option. len: %d" % len(option_data))
       # Create a tuple of (code(int), len(int), data(raw bytes)), append this to vendor_options
-      vop_code, vop_length = self.unpack('!BB', option_data)
+      vop_code, vop_length = self.unpack('!BB', option_data[:2])
       vop_raw_value = option_data[2:2 + vop_length]
       self.vendor_options.append((vop_code, vop_length, vop_raw_value))
       option_data = option_data[2 + vop_length:]

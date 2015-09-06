@@ -1,5 +1,6 @@
 __author__ = 'Robbe Van der Gucht'
 
+import logging
 
 class UDP:
   from struct import unpack
@@ -22,7 +23,7 @@ class UDP:
 
     unpackstr = '!HHHH'
     # ! - big-endian (network std)
-    # H - unsigned short (int) 16 bits
+    # H - unsigned short (int) 16 bits (2 Bytes)
 
     udpheader = self.unpack(unpackstr, datagram[:4 * 2])  # 4 * 2 bytes
     self.source_port = udpheader[0]
@@ -33,6 +34,7 @@ class UDP:
     self.application_layer = None
     if (self.source_port == 67 and self.destination_port == 68) or \
        (self.source_port == 68 and self.destination_port == 67):
+      logging.debug("DHCP protocol found. Length: %d" % len(datagram[8:]))
       self.application_layer = self.DHCP(datagram[8:])
 
   def __str__(self):

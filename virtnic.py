@@ -5,7 +5,7 @@ import socket
 import sys
 import logging
 import internet
-from data import init_datastore,save_packet
+from data import init_datastore, save_packet
 import atexit
 
 # Set up logger
@@ -19,6 +19,7 @@ logger = logging.getLogger(__name__)
 @atexit.register
 def check_logs():
   print("\nCheck log file %s for errors" % log_file)
+
 
 class NetworkInterface:
 
